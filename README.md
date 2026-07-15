@@ -68,23 +68,23 @@ Our robust architecture ensures separation of concerns, scalability, and secure 
 
 ```mermaid
 graph TD
-  subgraph Frontend [React 19 Client UI]
-    A[Vite Router] --> B[Auth Context / Role Guards]
-    B --> C[Patient Dashboard (Insights, OCR, Booking)]
-    B --> D[Doctor Room (Queue, AI Summaries)]
-    B --> E[Admin Analytics]
+  subgraph Frontend["React 19 Client UI"]
+    A["Vite Router"] --> B["Auth Context / Role Guards"]
+    B --> C["Patient Dashboard - Insights, OCR, Booking"]
+    B --> D["Doctor Room - Queue and AI Summaries"]
+    B --> E["Admin Analytics"]
   end
 
-  subgraph Backend [Node.js / Express Server]
-    F[Auth / JWT Middleware] --> G[Clinical Appointment Scheduler]
-    F --> H[AI Triage & OCR Engine]
-    F --> I[Notification / Mailer Service]
+  subgraph Backend["Node.js / Express Server"]
+    F["Auth / JWT Middleware"] --> G["Clinical Appointment Scheduler"]
+    F --> H["AI Triage and OCR Engine"]
+    F --> I["Notification / Mailer Service"]
   end
 
-  subgraph Database [MongoDB Cluster]
-    J[(Users & Profiles)]
-    K[(Appointments - Unique Compound Indices)]
-    L[(SlotReservations - TTL 5-min Holds)]
+  subgraph Database["MongoDB Cluster"]
+    J[("Users and Profiles")]
+    K[("Appointments - Unique Compound Indices")]
+    L[("SlotReservations - TTL 5-min Holds")]
   end
 
   C --> F
