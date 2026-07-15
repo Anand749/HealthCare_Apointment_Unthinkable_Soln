@@ -45,7 +45,7 @@ const Login = () => {
       toast.success(`Logged in as ${user.name}`);
       navigate(`/${user.role}`);
     } catch (error) {
-      toast.error('Invalid credentials or role mismatch');
+      toast.error(error.message || 'Invalid credentials. Please try again.');
     }
   };
 

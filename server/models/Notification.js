@@ -16,17 +16,25 @@ const NotificationSchema = new mongoose.Schema({
   status: {
     type: String,
     enum: ['sent', 'failed', 'retrying'],
-    default: 'sent'
+    default: 'retrying'
   },
   attempts: {
     type: Number,
     default: 1
   },
-  errorLog: String,
-  lastAttempt: {
+  errorLog: {
+    type: String,
+    default: ''
+  },
+  sentAt: {
+    type: Date,
+    default: null
+  },
+  createdAt: {
     type: Date,
     default: Date.now
   }
 });
 
 module.exports = mongoose.model('Notification', NotificationSchema);
+

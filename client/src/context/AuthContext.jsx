@@ -7,7 +7,7 @@ export const mockUsers = {
   patient: {
     id: 'p1',
     name: 'Alex Mercer',
-    email: 'patient@healthcare.com',
+    email: 'anandchapke11@gmail.com',
     role: 'patient',
     token: 'mock-patient-token',
     healthScore: 87,
@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }) => {
     setLoading(true);
     try {
       // 1. Try real login against Express backend
-      const response = await API.post('/auth/login', { email, password });
+      const response = await API.post('/auth/login', { email: email.trim(), password });
       if (response.data?.success) {
         const payload = {
           id: response.data.user.id,
@@ -67,23 +67,11 @@ export const AuthProvider = ({ children }) => {
         return payload;
       }
     } catch (error) {
-      console.warn('Backend offline or authentication failed. Falling back to mock data.', error.message);
-    }
-
-    // 2. Fallback Mock Logins for testing when node server is offline
-    await new Promise((resolve) => setTimeout(resolve, 800));
-    const selectedUser = Object.values(mockUsers).find(
-      (u) => (u.email === email && role === u.role) || (role === u.role)
-    );
-
-    if (selectedUser) {
-      setUser(selectedUser);
-      localStorage.setItem('hc_user', JSON.stringify(selectedUser));
       setLoading(false);
-      return selectedUser;
-    } else {
-      setLoading(false);
-      throw new Error('Invalid credentials');
+      // If we got a 401 or backend error, we should NOT silently fall back to a mock token,
+      // because a mock token will just fail all subsequent protected API calls.
+      // The mock login should only be used via the Quick Demo Access buttons.
+      throw new Error(error.message || 'Login failed. Please check your credentials.');
     }
   };
 
@@ -94,10 +82,8 @@ export const AuthProvider = ({ children }) => {
       setLoading(false);
       return response.data;
     } catch (error) {
-      console.warn('Backend offline, simulating successful registration.');
-      await new Promise((resolve) => setTimeout(resolve, 800));
       setLoading(false);
-      return { success: true };
+      throw new Error(error.message || 'Registration failed.');
     }
   };
 

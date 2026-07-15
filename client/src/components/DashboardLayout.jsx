@@ -3,7 +3,8 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import {
   LayoutDashboard, Calendar, Search, LogOut, Bell, Menu, X,
-  Stethoscope, Heart, TrendingUp, History, FileText, Clock, Plus, ChevronRight
+  Stethoscope, Heart, TrendingUp, History, FileText, Clock, Plus, ChevronRight,
+  AlertTriangle, MailWarning
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -31,10 +32,10 @@ const DashboardLayout = ({ children }) => {
         ];
       case 'admin':
         return [
-          { label: 'Dashboard', path: '/admin', icon: LayoutDashboard },
-          { label: 'Manage Doctors', path: '/admin/doctors', icon: Stethoscope },
-          { label: 'Schedules', path: '/admin/schedules', icon: Calendar },
-          { label: 'Specializations', path: '/admin/specializations', icon: Plus },
+          { label: 'Dashboard', path: '/admin?tab=overview', icon: LayoutDashboard },
+          { label: 'Manage Doctors', path: '/admin?tab=doctors', icon: Stethoscope },
+          { label: 'Leave Conflicts', path: '/admin?tab=leaves', icon: AlertTriangle },
+          { label: 'Notification Logs', path: '/admin?tab=notifications', icon: MailWarning },
         ];
       default:
         return [];
@@ -65,7 +66,8 @@ const DashboardLayout = ({ children }) => {
       {/* Nav Items */}
       <nav className="flex-1 space-y-1">
         {menuItems.map((item) => {
-          const isActive = location.pathname === item.path || (item.path !== '/patient' && item.path !== '/doctor' && item.path !== '/admin' && location.pathname.startsWith(item.path));
+          const currentPath = location.pathname + location.search;
+          const isActive = currentPath === item.path || (item.path !== '/patient' && item.path !== '/doctor' && !item.path.startsWith('/admin') && currentPath.startsWith(item.path));
           const Icon = item.icon;
           return (
             <Link
@@ -86,6 +88,7 @@ const DashboardLayout = ({ children }) => {
           );
         })}
       </nav>
+
 
       {/* User Footer */}
       <div className="border-t border-slate-200 pt-4 mt-4">
