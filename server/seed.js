@@ -14,12 +14,7 @@ const seedData = async () => {
     await mongoose.connect(process.env.MONGO_URI || 'mongodb://localhost:27017/healsync');
 
     console.log('Clearing old database entries...');
-    await User.deleteMany();
-    await Doctor.deleteMany();
-    await Patient.deleteMany();
-    await Appointment.deleteMany();
-    await Leave.deleteMany();
-    await SlotReservation.deleteMany();
+    await mongoose.connection.db.dropDatabase();
 
     console.log('Seeding mock users...');
 

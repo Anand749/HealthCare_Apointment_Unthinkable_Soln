@@ -24,20 +24,20 @@
 <div align="center">
   <table>
     <tr>
-      <td align="center"><b>Patient Dashboard (Insights & AI Booking)</b></td>
-      <td align="center"><b>Doctor Dashboard (Clinical Consultation)</b></td>
+      <td align="center"><b>🩺 Patient Dashboard — Health Insights & AI Booking</b></td>
+      <td align="center"><b>👨‍⚕️ Doctor Dashboard — Clinical Consultation Room</b></td>
     </tr>
     <tr>
-      <td><img src="https://via.placeholder.com/600x350/0f172a/ffffff?text=Patient+Dashboard+Screenshot" alt="Patient Dashboard" width="100%"/></td>
-      <td><img src="https://via.placeholder.com/600x350/0f172a/ffffff?text=Doctor+Dashboard+Screenshot" alt="Doctor Dashboard" width="100%"/></td>
+      <td><img src="./assets/patient_dashboard.png" alt="Patient Dashboard" width="100%"/></td>
+      <td><img src="./assets/doctor_dashboard.png" alt="Doctor Dashboard" width="100%"/></td>
     </tr>
     <tr>
-      <td align="center"><b>AI Prescription OCR Scanner</b></td>
-      <td align="center"><b>Concurrency-Safe Booking Flow</b></td>
+      <td align="center"><b>🤖 AI Prescription OCR Scanner</b></td>
+      <td align="center"><b>📅 Smart Doctor Booking Panel</b></td>
     </tr>
     <tr>
-      <td><img src="https://via.placeholder.com/600x350/0f172a/ffffff?text=AI+OCR+Scanner+Screenshot" alt="OCR Scanner" width="100%"/></td>
-      <td><img src="https://via.placeholder.com/600x350/0f172a/ffffff?text=Booking+Flow+Screenshot" alt="Booking Flow" width="100%"/></td>
+      <td><img src="./assets/ocr_scanner.png" alt="OCR Scanner" width="100%"/></td>
+      <td><img src="./assets/booking_panel.png" alt="Booking Panel" width="100%"/></td>
     </tr>
   </table>
 </div>
